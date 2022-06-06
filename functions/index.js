@@ -33,6 +33,7 @@ app.post('/login', (req, res)=> {
 app.get('/public', (req, res)=> {
     res.send('Welcome!')
 });
+
 app.get('/private', (req, res)=> {
     //let's require valid token to see this
     const token = req.headers.authorization || "";
@@ -45,6 +46,8 @@ app.get('/private', (req, res)=> {
             return;
         }
         //we will know if token is valid
+        //check if decoded.id is the user they claim to be
+        //authorized to update record in db
         res.send(`Welcome ${decoded.email}!`)
     })
 });
